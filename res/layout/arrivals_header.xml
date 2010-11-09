@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- TITLE BAR   -->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/margin" >
+
+    <TextView 
+        android:id="@+id/arrivals_NO"
+        android:text="@string/arrivals_NO"
+        android:textColor="@color/hvit"
+        android:textSize="@dimen/largeText"
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin" />
+    
+    <TextView 
+        android:id="@+id/arrivals_EN"
+        android:text="@string/arrivals_EN"
+        android:textColor="@color/morkGul"
+        android:textSize="@dimen/largeText"
+        android:layout_toRightOf="@+id/arrivals_NO"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin" />
+    
+    <ImageButton
+        android:id="@+id/update"
+        android:src="@android:drawable/ic_popup_sync"
+        android:background="@color/backgroundColor"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:scaleType="centerInside" 
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin" 
+        android:layout_gravity="right" />
+        
+    <ProgressBar android:id="@+android:id/progress_small"
+        style="?android:attr/progressBarStyleSmall"
+        android:background="@color/backgroundColor" 
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true" 
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin" 
+        android:layout_gravity="right" 
+        android:layout_marginTop="3dp"
+        android:visibility="gone" />
+
+</RelativeLayout>
+<!-- END TITLE BAR   -->

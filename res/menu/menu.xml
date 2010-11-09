@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <item android:id="@+id/menu_airport" 
+        android:title="@string/airport" 
+        android:icon="@drawable/airport" />
+
+<!--    <item android:id="@+id/menu_updateInterval" -->
+<!--        android:title="@string/updateInterval"-->
+<!--        android:icon="@android:drawable/ic_menu_recent_history" />        -->
+        
+    <item android:id="@+id/menu_arrival" 
+        android:title="@string/arrival"
+        android:icon="@drawable/arrival" />
+        
+    <item android:id="@+id/menu_departure" 
+        android:title="@string/departures_NO"
+        android:icon="@drawable/departure" />
+
+</menu>

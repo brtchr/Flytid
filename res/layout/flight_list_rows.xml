@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+    
+    <TableRow>
+
+        <TextView 
+            android:id="@+id/flight" 
+            android:textColor="@color/lysGul"
+            android:textSize="@dimen/smallText"
+            android:layout_weight="0.16"
+            android:layout_width="0dp"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginRight="@dimen/margin"  />
+        
+        <TextView 
+            android:id="@+id/time" 
+            android:textColor="@color/lysGul"
+            android:textSize="@dimen/smallText"
+            android:layout_weight="0.11"
+            android:layout_width="0dp"
+            android:layout_marginRight="@dimen/margin" />
+        
+        <TextView 
+            android:id="@+id/gate_belt" 
+            android:textColor="@color/lysGul"
+            android:textSize="@dimen/smallText"
+            android:layout_weight="0.13"
+            android:layout_width="0dp"
+            android:gravity="center_horizontal"
+            android:layout_marginRight="@dimen/margin"  />
+            
+        <TextView 
+            android:id="@+id/destination_from" 
+            android:textColor="@color/lysGul"
+            android:textSize="@dimen/smallText"
+            android:layout_weight="0.3"
+            android:layout_width="0dp"
+            android:layout_marginRight="@dimen/margin"  />
+            
+        <TextView 
+            android:id="@+id/remarks" 
+            android:textColor="@color/lysGul"
+            android:textSize="@dimen/smallText"
+            android:layout_weight="0.3"
+            android:layout_width="0dp"
+            android:layout_marginRight="@dimen/margin"  />
+       
+    </TableRow>
+</TableLayout>    

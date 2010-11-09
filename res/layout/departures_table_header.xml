@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- TABLE HEADER   -->
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+    
+    <TableRow>
+        
+        <TextView 
+            android:text="@string/flight_NO" 
+            android:textColor="@color/hvit"
+            android:textSize="@dimen/smallText"
+            android:layout_weight="0.16"
+            android:layout_width="0dp"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginRight="@dimen/margin"  />
+        
+        <TextView 
+            android:text="@string/time_NO" 
+            android:textColor="@color/hvit"
+            android:textSize="@dimen/smallText"
+            android:layout_weight="0.11"
+            android:layout_width="0dp"
+            android:layout_marginRight="@dimen/margin"  />
+        
+        <TextView 
+            android:text="@string/gate_NO" 
+            android:textColor="@color/hvit"
+            android:textSize="@dimen/smallText"
+            android:layout_weight="0.13"
+            android:layout_width="0dp"
+            android:layout_marginRight="@dimen/margin"  />
+            
+        <TextView 
+            android:text="@string/destination_NO" 
+            android:textColor="@color/hvit"
+            android:textSize="@dimen/smallText"
+            android:layout_weight="0.3"
+            android:layout_width="0dp"
+            android:layout_marginRight="@dimen/margin"  />
+            
+        <TextView 
+            android:text="@string/remarks_NO" 
+            android:textColor="@color/hvit"
+            android:textSize="@dimen/smallText"
+            android:layout_weight="0.3"
+            android:layout_width="0dp"
+            android:layout_marginRight="@dimen/margin"  />
+        
+    </TableRow>
+    
+    <TableRow>
+        
+        <TextView 
+            android:text="@string/flight_EN" 
+            android:textColor="@color/morkGul"
+            android:textSize="@dimen/smallText"
+            android:layout_weight="0.16"
+            android:layout_width="0dp"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginRight="@dimen/margin"  />
+        
+        <TextView 
+            android:text="@string/time_EN" 
+            android:textColor="@color/morkGul"
+            android:textSize="@dimen/smallText"
+            android:layout_weight="0.11"
+            android:layout_width="0dp"
+            android:layout_marginRight="@dimen/margin"  />
+        
+        <TextView 
+            android:text="@string/gate_EN" 
+            android:textColor="@color/morkGul"
+            android:textSize="@dimen/smallText"
+            android:layout_weight="0.13"
+            android:layout_width="0dp"
+            android:layout_marginRight="@dimen/margin"  />
+            
+        <TextView 
+            android:text="@string/destination_EN" 
+            android:textColor="@color/morkGul"
+            android:textSize="@dimen/smallText"
+            android:layout_weight="0.3"
+            android:layout_width="0dp"
+            android:layout_marginRight="@dimen/margin"  />
+            
+        <TextView 
+            android:text="@string/remarks_EN" 
+            android:textColor="@color/morkGul"
+            android:textSize="@dimen/smallText"
+            android:layout_weight="0.3"
+            android:layout_width="0dp"
+            android:layout_marginRight="@dimen/margin"  />
+        
+    </TableRow>
+</TableLayout>
+<!-- END TABLE HEADER   -->

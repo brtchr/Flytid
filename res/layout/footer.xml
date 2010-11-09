@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/margin"
+    android:layout_marginRight="@dimen/margin" >
+
+    <TextView 
+        android:id="@+id/avinor"
+        android:text="@string/avinor"
+        android:textColor="@color/hvit"
+        android:textSize="@dimen/smallText"
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/margin" />
+    
+    <TextView 
+        android:id="@+id/selected_airport"
+        android:text="OSL"
+        android:textColor="@color/hvit"
+        android:textSize="@dimen/smallText"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/margin" />
+
+</RelativeLayout>

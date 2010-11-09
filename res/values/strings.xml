@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Flytid</string>
+    <string name="avinor">Flydata fra Avinor</string>
+    <string name="loading">Laster data...</string>
+
+    <!-- Menu -->
+    <string name="airport">Flyplass</string>
+    <string name="arrival">Ankomster</string>
+    <string name="departure">Avganger</string>
+    <string name="updateInterval">Oppdateringsinterval</string>
+    
+    <!-- Alert titles   -->
+    <string name="chooseAirport">Velg flyplass</string>
+    
+    <!-- Table Headings   -->
+    <string name="departures_NO">Avganger</string>
+    <string name="departures_EN">Departures</string>
+    <string name="destination_NO">Reisemål</string>
+    <string name="destination_EN">Destination</string>
+    <string name="from_NO">Fra</string>
+    <string name="from_EN">From</string>
+    <string name="arrivals_NO">Ankomster</string>
+    <string name="arrivals_EN">Arrivals</string>
+    <string name="flight_NO">Rute</string>
+    <string name="flight_EN">Flight</string>
+    <string name="gate_NO">Utgang</string>
+    <string name="gate_EN">Gate</string>
+    <string name="belt_NO">Belte</string>
+    <string name="belt_EN">Belt</string>
+    <string name="remarks_NO">Merknader</string>
+    <string name="remarks_EN">Remarks</string>
+    <string name="time_NO">Tid</string>
+    <string name="time_EN">Time</string>
+    
+</resources>
