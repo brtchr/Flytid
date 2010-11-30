@@ -7,7 +7,7 @@ package info.brathen.flytid.enums;
  * @author Christoffer
  *
  */
-public enum FlightStatuses {
+public enum FlightStatus {
 	N("New info", "Ny info"),
 	E("New time", "Ny tid"),
 	D("Departed", "Avreist"),
@@ -21,7 +21,7 @@ public enum FlightStatuses {
 	 * @param textEn
 	 * @param textNo
 	 */
-	private FlightStatuses(String textEn, String textNo) {
+	private FlightStatus(String textEn, String textNo) {
 		this.textEn = textEn;
 		this.textNo = textNo;
 	}

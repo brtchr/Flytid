@@ -3,6 +3,9 @@
  */
 package info.brathen.flytid.util;
 
+import info.brathen.flytid.domain.Airline;
+import info.brathen.flytid.domain.Airport;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,7 +23,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 	// The Android's default system path of your application database.
 	private static String DB_PATH = "/data/data/info.brathen.flytid/databases/";
 	private static String DB_NAME = "Avinor";
-	private static final String DATABASE_TABLE = "Airport";
+	private static final String AIRPORT_TABLE = "Airport";
+	private static final String AIRLINE_TABLE = "Airline";
 	private static final String KEY_ROWID = "_id";
 	private static final String KEY_CODE = "code";
 	private static final String KEY_NAME = "name";
@@ -148,7 +152,17 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 	
 	public Cursor fetchAirportFromCode(String code) throws SQLException {
 		Cursor mCursor =
-			myDataBase.query(true, DATABASE_TABLE, new String[] { KEY_ROWID, KEY_CODE, KEY_NAME }, 
+			myDataBase.query(true, AIRPORT_TABLE, new String[] { KEY_ROWID, KEY_CODE, KEY_NAME }, 
+					KEY_CODE + "='" + code +"'", null, null, null, null, null);
+		if (mCursor != null) {
+			mCursor.moveToFirst();
+		}
+		return mCursor;
+	}
+	
+	public Cursor fetchAirlineFromCode(String code) throws SQLException {
+		Cursor mCursor =
+			myDataBase.query(true, AIRLINE_TABLE, new String[] { KEY_ROWID, KEY_CODE, KEY_NAME }, 
 					KEY_CODE + "='" + code +"'", null, null, null, null, null);
 		if (mCursor != null) {
 			mCursor.moveToFirst();
@@ -167,5 +181,35 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 		cursor.close();
 		close();
 		return fullName;
+	}
+
+	public Airport getAirport(String code) {
+		openDataBase();
+		Cursor cursor = fetchAirportFromCode(code);
+		if(cursor.getCount() == 0) {
+			return null;
+		}
+		
+		Airport airport = new Airport(cursor.getString(1), cursor.getString(2));
+		
+		cursor.close();
+		close();
+		return airport;
+	}
+
+	public Airline getAirline(String code) {
+		openDataBase();
+		Cursor cursor = fetchAirlineFromCode(code);
+		if(cursor.getCount() == 0) {
+			cursor.close();
+			close();
+			return null;
+		}
+		
+		Airline airline = new Airline(cursor.getString(1), cursor.getString(2));
+		
+		cursor.close();
+		close();
+		return airline;
 	}
 }

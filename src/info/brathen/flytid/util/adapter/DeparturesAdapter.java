@@ -4,10 +4,10 @@
 package info.brathen.flytid.util.adapter;
 
 import info.brathen.flytid.R;
-import info.brathen.flytid.service.Downloader;
+import info.brathen.flytid.domain.Flight;
+import info.brathen.flytid.util.DateFormatter;
 
 import java.util.List;
-import java.util.Map;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -18,20 +18,20 @@ import android.widget.TextView;
 
 public class DeparturesAdapter extends BaseAdapter {
         private LayoutInflater mInflater;
-        private List<Map<String, String>> flights;
+        private List<Flight> flights;
         
-		public DeparturesAdapter(Context context, List<Map<String, String>> flights) {
+		public DeparturesAdapter(Context context, List<Flight> flights) {
             // Cache the LayoutInflate to avoid asking for a new one each time.
             mInflater = LayoutInflater.from(context);
 
             this.flights = flights;
         }
 		
-		public List<Map<String, String>> getFlights() {
+		public List<Flight> getFlights() {
 			return flights;
 		}
 
-		public void setFlights(List<Map<String, String>> flights) {
+		public void setFlights(List<Flight> flights) {
 			this.flights = flights;
 		}
 
@@ -114,13 +114,18 @@ public class DeparturesAdapter extends BaseAdapter {
                 // Get the ViewHolder back to get fast access
                 holder = (ViewHolder) convertView.getTag();
             }
-
+            
             // Bind the data efficiently with the holder.
-            holder.flight.setText(flights.get(position).get(Downloader.FLIGHT));
-            holder.time.setText(flights.get(position).get(Downloader.TIME));
-            holder.gate.setText(flights.get(position).get(Downloader.GATE));
-            holder.destination.setText(flights.get(position).get(Downloader.DESTINATION));
-            holder.remarks.setText(flights.get(position).get(Downloader.REMARKS));
+            Flight flight = flights.get(position);
+            holder.flight.setText(flight.getFlightId());
+            holder.time.setText(DateFormatter.displayDate(flight.getScheduledTime()));
+            holder.gate.setText(flight.getGate());
+            holder.remarks.setText(flight.getRemark());
+            if(flight.getViaAirport() != null) {
+            	holder.destination.setText(flight.getViaAirport().getName());
+            } else {
+            	holder.destination.setText(flight.getAirport().getName());
+            }
             
             return convertView;
         }

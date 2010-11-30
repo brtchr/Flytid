@@ -1,6 +1,7 @@
 package info.brathen.flytid.activities;
 
 import info.brathen.flytid.R;
+import info.brathen.flytid.domain.Flight;
 import info.brathen.flytid.service.AvinorWebService;
 import info.brathen.flytid.util.Settings;
 import info.brathen.flytid.util.adapter.ArrivalsAdapter;
@@ -8,7 +9,6 @@ import info.brathen.flytid.xml.handler.FlightXmlHandler;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -21,7 +21,6 @@ import android.widget.TextView;
 
 public class Arrivals extends FlytidActivity {
 	
-//	private ProgressDialog progressDialog = null;
 	private ProgressBar progressBar = null;
 	private ArrivalsAdapter adapter;
 	private ImageButton updateButton;
@@ -49,11 +48,11 @@ public class Arrivals extends FlytidActivity {
     	
     	final Object oldFlights = getLastNonConfigurationInstance();
         if(oldFlights != null) {
-        	adapter = new ArrivalsAdapter(this, (List<Map<String, String>>)oldFlights);
+        	adapter = new ArrivalsAdapter(this, (List<Flight>)oldFlights);
         	list.setAdapter(adapter);
         }
         else {
-        	adapter = new ArrivalsAdapter(this, new ArrayList<Map<String, String>>());
+        	adapter = new ArrivalsAdapter(this, new ArrayList<Flight>());
         	list.setAdapter(adapter);
         	downloadFlights();
         }
@@ -61,25 +60,23 @@ public class Arrivals extends FlytidActivity {
     }
     
 	public void downloadFlights() {
-//		progressDialog = ProgressDialog.show(this, "", this.getText(R.string.loading), true);
 		updateButton.setVisibility(ImageButton.GONE);
 		progressBar.setVisibility(ProgressBar.VISIBLE);
 		
 		clearOldFlights();
 		
-		AsyncTask<String, Integer, List<Map<String, String>>> task = 
-			new AsyncTask<String, Integer, List<Map<String, String>>>() {
+		AsyncTask<String, Void, List<Flight>> task = 
+			new AsyncTask<String, Void, List<Flight>>() {
 				@Override
 			    // Actual download method, run in the task thread
-			    protected List<Map<String, String>> doInBackground(String... params) {
+			    protected List<Flight> doInBackground(String... params) {
 			    	// params comes from the execute() call: params[0] is the url.
 			    	return AvinorWebService.avinorXmlService(params[0], new FlightXmlHandler(Arrivals.this));
 			    }
 	
 			    @Override
-			    protected void onPostExecute(List<Map<String, String>> newFlights) {
+			    protected void onPostExecute(List<Flight> newFlights) {
 			    	updateFlights(newFlights);
-//			    	progressDialog.dismiss();
 			    	updateButton.setVisibility(ImageButton.VISIBLE);
 					progressBar.setVisibility(ProgressBar.GONE);
 			        super.onPostExecute(newFlights);
@@ -94,7 +91,7 @@ public class Arrivals extends FlytidActivity {
 		adapter.notifyDataSetChanged();
 	}
 
-	protected void updateFlights(List<Map<String, String>> newFlights) {
+	protected void updateFlights(List<Flight> newFlights) {
 		adapter.setFlights(newFlights);
 		adapter.notifyDataSetChanged();
 	}

@@ -5,6 +5,7 @@ package info.brathen.flytid.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.TimeZone;
 
 import android.util.Log;
@@ -26,5 +27,34 @@ public class DateFormatter {
 			Log.e("DATE", e.getMessage(), e);
 		}
 		return null;
+	}
+	
+	
+	public static Date convertToDate(String date) {
+		if(date == null) {
+			return null;
+		}
+		
+		sdfOriginal.setTimeZone(TimeZone.getTimeZone("UTC"));
+    	try {
+			return sdfOriginal.parse(date);
+		} catch (ParseException e) {
+			Log.e("DATE", e.getMessage(), e);
+		}
+		
+		return null;
+	}
+	
+	/**
+	 * Formats date to HH:mm pattern
+	 * @param date
+	 * @return string in 'HH:mm' pattern
+	 */
+	public static String displayDate(Date date) {
+ 		try {
+ 			return sdfFitted.format(date);
+ 		} catch(NullPointerException npe) {
+ 			return null;
+ 		}
 	}
 }

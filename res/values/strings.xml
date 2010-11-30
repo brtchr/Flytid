@@ -33,4 +33,15 @@
     <string name="time_NO">Tid</string>
     <string name="time_EN">Time</string>
     
+    <!-- Preferanser   -->
+    <string name="preferences">Instillinger</string>
+    
+    <string name="pref_my_airport_key">Min flyplass</string>
+    <string name="pref_my_airport_title">Min flyplass</string>
+    <string name="pref_my_airport_sum">Her kan du velge din prefererte flyplass.</string>
+    
+    <string name="pref_update_interval_key">updateInterval</string>
+    <string name="pref_update_interval_title">Oppdateringsintervall</string>
+    <string name="pref_update_interval_sum">Valg hvor ofte man skal oppdatere data i minutter.(min:3 max:15)</string>
+    
 </resources>

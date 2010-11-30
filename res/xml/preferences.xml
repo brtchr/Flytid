@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <PreferenceCategory
+        android:title="@string/preferences" >
+    
+	    <ListPreference
+	      android:key="@string/pref_my_airport_key"
+	      android:title="@string/pref_my_airport_title"
+	      android:summary="@string/pref_my_airport_sum"
+	      android:defaultValue="1" />       
+	                                          
+	    <info.brathen.flytid.preferences.SeekBarPreference  
+	      android:key="@string/pref_update_interval_key"
+	      android:defaultValue="3"
+	      android:title="@string/pref_update_interval_title"
+	      android:summary="@string/pref_update_interval_sum" />
+	           
+    </PreferenceCategory>
+                 
+</PreferenceScreen>

@@ -4,10 +4,10 @@
 package info.brathen.flytid.util.adapter;
 
 import info.brathen.flytid.R;
-import info.brathen.flytid.service.Downloader;
+import info.brathen.flytid.domain.Flight;
+import info.brathen.flytid.util.DateFormatter;
 
 import java.util.List;
-import java.util.Map;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -18,20 +18,20 @@ import android.widget.TextView;
 
 public class ArrivalsAdapter extends BaseAdapter {
         private LayoutInflater mInflater;
-        private List<Map<String, String>> flights;
+        private List<Flight> flights;
         
-		public ArrivalsAdapter(Context context, List<Map<String, String>> flights) {
+		public ArrivalsAdapter(Context context, List<Flight> flights) {
             // Cache the LayoutInflate to avoid asking for a new one each time.
             mInflater = LayoutInflater.from(context);
 
             this.flights = flights;
         }
 		
-		public List<Map<String, String>> getFlights() {
+		public List<Flight> getFlights() {
 			return flights;
 		}
 
-		public void setFlights(List<Map<String, String>> flights) {
+		public void setFlights(List<Flight> flights) {
 			this.flights = flights;
 		}
 
@@ -116,11 +116,12 @@ public class ArrivalsAdapter extends BaseAdapter {
             }
 
             // Bind the data efficiently with the holder.
-            holder.flight.setText(flights.get(position).get(Downloader.FLIGHT));
-            holder.time.setText(flights.get(position).get(Downloader.TIME));
-            holder.belt.setText(flights.get(position).get(Downloader.BELT));
-            holder.from.setText(flights.get(position).get(Downloader.DESTINATION));
-            holder.remarks.setText(flights.get(position).get(Downloader.REMARKS));
+            holder.flight.setText(flights.get(position).getFlightId());
+            holder.time.setText(DateFormatter.displayDate(
+            		flights.get(position).getScheduledTime()));
+            holder.belt.setText(flights.get(position).getBaggageBand());
+            holder.from.setText(flights.get(position).getAirport().getName());
+            holder.remarks.setText(flights.get(position).getRemark());
             
             return convertView;
         }

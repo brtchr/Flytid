@@ -18,7 +18,8 @@
         android:layout_weight="1"
         android:cacheColorHint="@color/backgroundColor" 
         android:divider="@color/morkGul"
-        android:dividerHeight="2dp"
+        android:dividerHeight="1dp"
+        android:footerDividersEnabled="true"
          />
     
     <include layout="@layout/footer" />

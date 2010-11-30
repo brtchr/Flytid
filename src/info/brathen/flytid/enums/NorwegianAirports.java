@@ -86,7 +86,7 @@ public enum NorwegianAirports {
 		NorwegianAirports[] norwegianAirports = NorwegianAirports.values();
 		String[] airportNames = new String[norwegianAirports.length];
 		for(int i = 0; i< norwegianAirports.length; i++) {
-			airportNames[i] = norwegianAirports[i].toString();
+			airportNames[i] = norwegianAirports[i].getNavn();
 		}
 		return airportNames;
 	}

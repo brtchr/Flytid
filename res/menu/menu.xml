@@ -6,10 +6,6 @@
         android:title="@string/airport" 
         android:icon="@drawable/airport" />
 
-<!--    <item android:id="@+id/menu_updateInterval" -->
-<!--        android:title="@string/updateInterval"-->
-<!--        android:icon="@android:drawable/ic_menu_recent_history" />        -->
-        
     <item android:id="@+id/menu_arrival" 
         android:title="@string/arrival"
         android:icon="@drawable/arrival" />
@@ -17,5 +13,9 @@
     <item android:id="@+id/menu_departure" 
         android:title="@string/departures_NO"
         android:icon="@drawable/departure" />
+        
+    <item android:id="@+id/menu_preferences" 
+        android:title="@string/preferences"
+        android:icon="@android:drawable/ic_menu_preferences" />
 
 </menu>

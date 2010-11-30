@@ -4,6 +4,7 @@ package info.brathen.flytid.service;
  */
 
 
+import info.brathen.flytid.domain.Flight;
 import info.brathen.flytid.enums.UrlParameters;
 import info.brathen.flytid.util.Settings;
 import info.brathen.flytid.xml.handler.FlightXmlHandler;
@@ -12,7 +13,6 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
-import java.util.Map;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -52,7 +52,7 @@ public class AvinorWebService {
 	}
 
 
-	public static List<Map<String, String>> avinorXmlService(String path, FlightXmlHandler handler) {
+	public static List<Flight> avinorXmlService(String path, FlightXmlHandler handler) {
 		try {
 			/* Create a URL we want to load some xml-data from. */
 			path = createFullPath(path);
