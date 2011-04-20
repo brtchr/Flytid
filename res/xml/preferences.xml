@@ -9,14 +9,10 @@
 	      android:key="@string/pref_my_airport_key"
 	      android:title="@string/pref_my_airport_title"
 	      android:summary="@string/pref_my_airport_sum"
-	      android:defaultValue="1" />       
+	      android:defaultValue="1" />
+	    
+	    
 	                                          
-	    <info.brathen.flytid.preferences.SeekBarPreference  
-	      android:key="@string/pref_update_interval_key"
-	      android:defaultValue="3"
-	      android:title="@string/pref_update_interval_title"
-	      android:summary="@string/pref_update_interval_sum" />
-	           
     </PreferenceCategory>
                  
 </PreferenceScreen>

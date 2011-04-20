@@ -4,10 +4,9 @@ package info.brathen.flytid.service;
  */
 
 
-import info.brathen.flytid.domain.Flight;
 import info.brathen.flytid.enums.UrlParameters;
 import info.brathen.flytid.util.Settings;
-import info.brathen.flytid.xml.handler.FlightXmlHandler;
+import info.brathen.flytid.xml.handler.FlytidXmlHandler;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -52,11 +51,10 @@ public class AvinorWebService {
 	}
 
 
-	public static List<Flight> avinorXmlService(String path, FlightXmlHandler handler) {
+	public static List avinorXmlService(String path, FlytidXmlHandler handler) {
 		try {
 			/* Create a URL we want to load some xml-data from. */
 			path = createFullPath(path);
-			Log.d("URL", path);
 			URL url = new URL(path);
 			/* Get a SAXParser from the SAXPArserFactory. */
 			SAXParserFactory spf = SAXParserFactory.newInstance();
@@ -82,6 +80,6 @@ public class AvinorWebService {
 			Log.e("AvinorWebService", e.getMessage(), e);
 		}
 		
-		return handler.getFlights();
+		return handler.getElements();
 	}
 }

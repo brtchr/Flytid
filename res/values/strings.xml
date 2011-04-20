@@ -9,6 +9,7 @@
     <string name="arrival">Ankomster</string>
     <string name="departure">Avganger</string>
     <string name="updateInterval">Oppdateringsinterval</string>
+    <string name="sync">Oppdater</string>
     
     <!-- Alert titles   -->
     <string name="chooseAirport">Velg flyplass</string>

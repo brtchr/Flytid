@@ -3,11 +3,13 @@
  */
 package info.brathen.flytid.domain;
 
+import java.io.Serializable;
+
 /**
  * @author Christoffer
  *
  */
-public class Airport implements Comparable<Airport>{
+public class Airport implements Comparable<Airport>, Serializable {
 	private String code;
 	private String name;
 

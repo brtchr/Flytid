@@ -120,7 +120,7 @@ public class ArrivalsAdapter extends BaseAdapter {
             holder.time.setText(DateFormatter.displayDate(
             		flights.get(position).getScheduledTime()));
             holder.belt.setText(flights.get(position).getBaggageBand());
-            holder.from.setText(flights.get(position).getAirport().getName());
+            holder.from.setText(flights.get(position).getAirport() == null ? "" : flights.get(position).getAirport().getName());
             holder.remarks.setText(flights.get(position).getRemark());
             
             return convertView;

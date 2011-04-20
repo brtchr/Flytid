@@ -1,12 +1,14 @@
 package info.brathen.flytid.domain;
 
+import java.io.Serializable;
+
 /**
  * Domain class for fligth companies
  * 
  * @author Christoffer
  * 
  */
-public class Airline implements Comparable<Airline> {
+public class Airline implements Comparable<Airline>, Serializable{
 	private String code;
 	private String name;
 

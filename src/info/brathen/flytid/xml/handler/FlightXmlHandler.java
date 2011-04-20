@@ -8,26 +8,24 @@ import info.brathen.flytid.domain.Airport;
 import info.brathen.flytid.domain.Flight;
 import info.brathen.flytid.enums.ArrDep;
 import info.brathen.flytid.enums.FlightStatus;
-import info.brathen.flytid.util.DataBaseHelper;
+import info.brathen.flytid.util.AirlineProvider;
+import info.brathen.flytid.util.AirportProvider;
 import info.brathen.flytid.util.DateFormatter;
 import info.brathen.flytid.util.Settings;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
-import org.xml.sax.helpers.DefaultHandler;
 
 import android.content.Context;
-import android.database.SQLException;
 
 /**
  * @author Christoffer
  * 
  */
-public class FlightXmlHandler extends DefaultHandler {
+public class FlightXmlHandler extends FlytidXmlHandler<Flight> {
 
 	// TAG keys
 	private static final String TAG_FLIGHT = "flight";
@@ -44,9 +42,10 @@ public class FlightXmlHandler extends DefaultHandler {
 	private static final String ATTRIBUTE_STATUS_CODE = "code";
 	private static final String ATTRIBUTE_STATUS_TIME = "time";
 	
-	private static final long FOUR_HOURS = 1000*60*60*4;
+	private static final long TIME_LIMIT = 1000*60*15;
 
-	private DataBaseHelper myDbHelper;
+	private AirlineProvider airlineProvider;
+	private AirportProvider airportProvider;
 
 	private List<Flight> flights;
 	private Flight flight;
@@ -57,25 +56,12 @@ public class FlightXmlHandler extends DefaultHandler {
 		super();
 		
 		flights = new ArrayList<Flight>();
-		this.myDbHelper = new DataBaseHelper(context);
-
-		try {
-			myDbHelper.createDataBase();
-		} catch (IOException ioe) {
-			throw new Error("Unable to create database");
-		} catch (SQLException sqle) {
-			throw sqle;
-		}
+		airlineProvider = new AirlineProvider(Airline.class, context);
+		airportProvider = new AirportProvider(Airport.class, context);
 	}
+
 
 	/**
-	 * @return the flights
-	 */
-	public List<Flight> getFlights() {
-		return flights;
-	}
-
-	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String,
@@ -113,7 +99,7 @@ public class FlightXmlHandler extends DefaultHandler {
 			}
 		} 
 		else if (localName.equals(TAG_AIRLINE) || qName.equals(TAG_AIRLINE)) {
-			Airline airline = myDbHelper.getAirline(currentValue);
+			Airline airline = airlineProvider.findAirlineByCode(currentValue);
 			flight.setAirline(airline);
 		} 
 		else if (localName.equals(TAG_FLIGHT_ID) || qName.equals(TAG_FLIGHT_ID)) {
@@ -130,7 +116,7 @@ public class FlightXmlHandler extends DefaultHandler {
 		} 
 		else if (localName.equals(TAG_AIRPORT) || qName.equals(TAG_AIRPORT)) {
 			if (!currentValue.equals("\n")) {
-				Airport airport = myDbHelper.getAirport(currentValue);
+				Airport airport = airportProvider.findAirportByCode(currentValue);
 				flight.setAirport(airport);
 			}
 		}
@@ -168,7 +154,10 @@ public class FlightXmlHandler extends DefaultHandler {
 	 */
 	@Override
 	public void endDocument() throws SAXException {
-		myDbHelper.close();
+		airlineProvider.close();
+		airlineProvider = null;
+		airportProvider.close();
+		airportProvider = null;
 		super.endDocument();
 	}
 	
@@ -180,7 +169,7 @@ public class FlightXmlHandler extends DefaultHandler {
 		} else if(flight.getScheduledTime() != null) {
 			time = flight.getScheduledTime().getTime();
 		}
-		return time < (System.currentTimeMillis() - FOUR_HOURS);
+		return time < (System.currentTimeMillis() - TIME_LIMIT);
 	}
 
 	private boolean isFlightDeparted(Flight flight) {
@@ -194,15 +183,20 @@ public class FlightXmlHandler extends DefaultHandler {
 		if(viaAirportString.indexOf(",") != -1) {
 			//Dersom avganger hent første
 			if(Settings.arrivalOrDeparture == ArrDep.D) {
-				return myDbHelper.getAirport(currentValue.substring(0, viaAirportString.indexOf(",")));
+				return airportProvider.findAirportByCode(currentValue.substring(0, viaAirportString.indexOf(",")));
 			}
 			//Dersom ankomster hent siste
 			else {
-				return myDbHelper.getAirport(currentValue.substring(0, currentValue.lastIndexOf(",")));
+				return airportProvider.findAirportByCode(currentValue.substring(0, currentValue.lastIndexOf(",")));
 			}
 		}
 		
 		return null;
+	}
+
+	@Override
+	public List<Flight> getElements() {
+		return flights;
 	}
 	
 }
