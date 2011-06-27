@@ -3,6 +3,7 @@
     <string name="app_name">Flytid</string>
     <string name="avinor">Flydata fra Avinor</string>
     <string name="loading">Laster data...</string>
+    <string name="tracker_id">UA-24026287-2</string>
 
     <!-- Menu -->
     <string name="airport">Flyplass</string>

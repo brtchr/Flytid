@@ -11,7 +11,7 @@ import info.brathen.flytid.xml.handler.FlytidXmlHandler;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.List;
+import java.util.ArrayList;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -23,10 +23,7 @@ import org.xml.sax.XMLReader;
 
 import android.util.Log;
 
-/**
- * @author Christoffer
- * 
- */
+@SuppressWarnings("unchecked")
 public class AvinorWebService {
 	/**
 	 * 
@@ -51,7 +48,7 @@ public class AvinorWebService {
 	}
 
 
-	public static List avinorXmlService(String path, FlytidXmlHandler handler) {
+	public static ArrayList avinorXmlService(String path, FlytidXmlHandler handler) {
 		try {
 			/* Create a URL we want to load some xml-data from. */
 			path = createFullPath(path);
@@ -69,6 +66,7 @@ public class AvinorWebService {
 			/* Parse the xml-data from our URL. */
 			InputSource inputSource = new InputSource(url.openStream());
 			inputSource.setEncoding(ISO_8859_1);
+			
 			xr.parse(inputSource);
 		} catch (MalformedURLException e) {
 			Log.e("AvinorWebService", e.getMessage(), e);

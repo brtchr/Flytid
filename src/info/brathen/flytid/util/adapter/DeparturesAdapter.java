@@ -7,83 +7,20 @@ import info.brathen.flytid.R;
 import info.brathen.flytid.domain.Flight;
 import info.brathen.flytid.util.DateFormatter;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class DeparturesAdapter extends BaseAdapter {
-        private LayoutInflater mInflater;
-        private List<Flight> flights;
-        
-		public DeparturesAdapter(Context context, List<Flight> flights) {
-            // Cache the LayoutInflate to avoid asking for a new one each time.
-            mInflater = LayoutInflater.from(context);
-
-            this.flights = flights;
-        }
+public class DeparturesAdapter extends FlytidAdapter {
 		
-		public List<Flight> getFlights() {
-			return flights;
-		}
-
-		public void setFlights(List<Flight> flights) {
-			this.flights = flights;
-		}
-
-        /**
-         * The number of items in the list
-         *
-         * @see android.widget.ListAdapter#getCount()
-         */
-        public int getCount() {
-        	if(flights == null) {return 0;}
-            return flights.size();
+        public DeparturesAdapter(Context context, ArrayList<Flight> flights) {
+        	super(context, flights);
         }
 
-        /**
-         * Since the data comes from an array, just returning the index is
-         * sufficent to get at the data. If we were using a more complex data
-         * structure, we would return whatever object represents one row in the
-         * list.
-         *
-         * @see android.widget.ListAdapter#getItem(int)
-         */
-        public Object getItem(int position) {
-            return position;
-        }
-
-        /**
-         * Use the array index as a unique id.
-         *
-         * @see android.widget.ListAdapter#getItemId(int)
-         */
-        public long getItemId(int position) {
-            return position;
-        }
-        
-        /* (non-Javadoc)
-		 * @see android.widget.BaseAdapter#areAllItemsEnabled()
-		 */
-		@Override
-		public boolean areAllItemsEnabled() {
-			return false;
-		}
-
-		
-		/* (non-Javadoc)
-		 * @see android.widget.BaseAdapter#isEnabled(int)
-		 */
-		@Override
-		public boolean isEnabled(int position) {
-			return false;
-		}
-		
-        /**
+		/**
          * Make a view to hold each row.
          *
          * @see android.widget.ListAdapter#getView(int, android.view.View,

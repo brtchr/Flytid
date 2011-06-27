@@ -6,7 +6,6 @@ package info.brathen.flytid.xml.handler;
 import info.brathen.flytid.domain.Airport;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -17,7 +16,7 @@ import org.xml.sax.SAXException;
  * This class handles the parsing of airports
  */
 public class AirportXmlHandler extends FlytidXmlHandler<Airport> {
-	private List<Airport> airports ;
+	private ArrayList<Airport> airports ;
 	private Airport airport;
 	
 	//TAG keys
@@ -30,7 +29,7 @@ public class AirportXmlHandler extends FlytidXmlHandler<Airport> {
 		airports = new ArrayList<Airport>();
 	}
 	
-	public List<Airport> getElements() {
+	public ArrayList<Airport> getElements() {
 		return airports;
 	}
 

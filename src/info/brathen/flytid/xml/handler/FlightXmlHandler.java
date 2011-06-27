@@ -14,7 +14,9 @@ import info.brathen.flytid.util.DateFormatter;
 import info.brathen.flytid.util.Settings;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -46,8 +48,11 @@ public class FlightXmlHandler extends FlytidXmlHandler<Flight> {
 
 	private AirlineProvider airlineProvider;
 	private AirportProvider airportProvider;
+	
+	private Map<String, Airline> airlineMap;
+	private Map<String, Airport> airportMap;
 
-	private List<Flight> flights;
+	private ArrayList<Flight> flights;
 	private Flight flight;
 
 	private String currentValue;
@@ -58,6 +63,23 @@ public class FlightXmlHandler extends FlytidXmlHandler<Flight> {
 		flights = new ArrayList<Flight>();
 		airlineProvider = new AirlineProvider(Airline.class, context);
 		airportProvider = new AirportProvider(Airport.class, context);
+		
+		initMaps();
+	}
+
+
+	private void initMaps() {
+		airlineMap = new HashMap<String, Airline>();
+		airportMap = new HashMap<String, Airport>();
+		List<Airline> airlines = airlineProvider.findAll();
+		for (Airline airline : airlines) {
+			airlineMap.put(airline.getCode(), airline);
+		}
+		
+		List<Airport> airports = airportProvider.findAll();
+		for (Airport airport : airports) {
+			airportMap.put(airport.getCode(), airport);
+		}
 	}
 
 
@@ -99,7 +121,7 @@ public class FlightXmlHandler extends FlytidXmlHandler<Flight> {
 			}
 		} 
 		else if (localName.equals(TAG_AIRLINE) || qName.equals(TAG_AIRLINE)) {
-			Airline airline = airlineProvider.findAirlineByCode(currentValue);
+			Airline airline = airlineMap.get(currentValue);
 			flight.setAirline(airline);
 		} 
 		else if (localName.equals(TAG_FLIGHT_ID) || qName.equals(TAG_FLIGHT_ID)) {
@@ -116,7 +138,7 @@ public class FlightXmlHandler extends FlytidXmlHandler<Flight> {
 		} 
 		else if (localName.equals(TAG_AIRPORT) || qName.equals(TAG_AIRPORT)) {
 			if (!currentValue.equals("\n")) {
-				Airport airport = airportProvider.findAirportByCode(currentValue);
+				Airport airport = airportMap.get(currentValue);
 				flight.setAirport(airport);
 			}
 		}
@@ -195,7 +217,7 @@ public class FlightXmlHandler extends FlytidXmlHandler<Flight> {
 	}
 
 	@Override
-	public List<Flight> getElements() {
+	public ArrayList<Flight> getElements() {
 		return flights;
 	}
 	

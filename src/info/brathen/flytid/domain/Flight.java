@@ -8,13 +8,14 @@ import info.brathen.flytid.enums.FlightStatus;
 import info.brathen.flytid.enums.LastLeg;
 import info.brathen.flytid.util.DateFormatter;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author Christoffer
  * 
  */
-public class Flight {
+public class Flight implements Serializable {
 	private String flightId;
 	private LastLeg lastLeg;
 	private Date scheduledTime;

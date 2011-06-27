@@ -10,6 +10,7 @@ import java.io.Serializable;
  *
  */
 public class Airport implements Comparable<Airport>, Serializable {
+	private static final long serialVersionUID = -2555754402781933390L;
 	private String code;
 	private String name;
 

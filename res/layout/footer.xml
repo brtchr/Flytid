@@ -16,7 +16,8 @@
         android:layout_width="wrap_content" 
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginRight="@dimen/margin" />
+        android:layout_marginRight="@dimen/margin" 
+        android:autoLink="web" />
     
     <TextView 
         android:id="@+id/selected_airport"

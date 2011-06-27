@@ -9,6 +9,7 @@ import java.io.Serializable;
  * 
  */
 public class Airline implements Comparable<Airline>, Serializable{
+	private static final long serialVersionUID = 5777762136819986540L;
 	private String code;
 	private String name;
 

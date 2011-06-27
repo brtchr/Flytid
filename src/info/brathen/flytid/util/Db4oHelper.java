@@ -41,12 +41,14 @@ public class Db4oHelper {
 	 */
 	private EmbeddedConfiguration dbConfig() throws IOException {
 		EmbeddedConfiguration configuration = Db4oEmbedded.newConfiguration();
+		configuration.common().objectClass(Airline.class).objectField("code").indexed(true);
 		configuration.common().objectClass(Airline.class).objectField("name").indexed(true);
 		configuration.common().objectClass(Airline.class).cascadeOnUpdate(true);
-		configuration.common().objectClass(Airline.class).cascadeOnActivate(true);
+//		configuration.common().objectClass(Airline.class).cascadeOnActivate(true);
+		configuration.common().objectClass(Airport.class).objectField("code").indexed(true);
 		configuration.common().objectClass(Airport.class).objectField("name").indexed(true);
 		configuration.common().objectClass(Airport.class).cascadeOnUpdate(true);
-		configuration.common().objectClass(Airport.class).cascadeOnActivate(true);
+//		configuration.common().objectClass(Airport.class).cascadeOnActivate(true);
 		return configuration;
 	}
 

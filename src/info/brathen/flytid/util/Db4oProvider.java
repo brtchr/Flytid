@@ -36,5 +36,3 @@ public class Db4oProvider <T extends Serializable> extends Db4oHelper {
 		}
     }
 }
-
-

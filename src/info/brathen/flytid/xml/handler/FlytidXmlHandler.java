@@ -3,7 +3,7 @@
  */
 package info.brathen.flytid.xml.handler;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import org.xml.sax.helpers.DefaultHandler;
 
@@ -18,5 +18,5 @@ public abstract class FlytidXmlHandler <T> extends DefaultHandler {
 	 * This method is supposed to be overridden
 	 * @return List of elements
 	 */
-	public abstract List<T> getElements() ;
+	public abstract ArrayList<T> getElements() ;
 }
